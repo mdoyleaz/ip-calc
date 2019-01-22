@@ -1,0 +1,14 @@
+table {
+  width: 20px;
+  padding: 3% ;
+  border: 2px solid #e7e7e7;
+}
+thead {
+  color: #bfc0c0;
+  background-color: #343844;
+  align-items: left;
+}
+
+table-hover:hover {
+  background: black;
+}

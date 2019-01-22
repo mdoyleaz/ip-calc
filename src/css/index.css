@@ -1,0 +1,15 @@
+
+body, html {
+  background-color: #f7f2ef;
+}
+
+body, h1, h2, h3 {
+  font-family: "Lato", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-weight: 700;
+}
+
+.wrapper {
+  display: center;
+  padding: 7%;
+  padding-top: 7%;
+}
