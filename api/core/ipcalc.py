@@ -12,11 +12,8 @@ class IpCalcVerFour(object):
         'prefix'  - 'int' type object representing the subnets prefix
     """
 
-    def __init__(self, address, prefix):
-        self.address = address
-        self.prefix = prefix
-
-        self.subnet = ipaddress.ip_network(f'{address}/{prefix}', strict=False)
+    def __init__(self, subnet):
+        self.subnet = ipaddress.ip_network(subnet, strict=False)
 
         self.usable = f"{self.subnet[2]} - {self.subnet[-2]}"
         self.netmask = str(self.subnet.netmask)
@@ -30,7 +27,7 @@ class IpCalcVerFour(object):
                             'gateway': self.gateway,
                             'netmask': self.netmask,
                             'broadcast': self.broadcast,
-                            'total_int': self.total_int,
+                            'total': self.total_int,
                             'total_usable': self.total_int - 3
                             }
 
@@ -46,9 +43,8 @@ class IpCalcVerFour(object):
         Takes a subnet and breaks it down into smaller prefixes.
         Requeires: 'prefix' - Integer; Prefix must be smaller than main block.
         """
-
         try:
-            subnet_list = [IpCalcVerFour(child[0], prefix).__dict__()
+            subnet_list = [IpCalcVerFour(str(child)).__dict__()
                            for child in self.subnet.subnets(new_prefix=prefix)]
         except ValueError as e:
             subnet_list = {'error': [str(e).capitalize()]}

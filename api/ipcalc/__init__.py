@@ -2,25 +2,36 @@
 
 # Flask Imports
 from flask import Flask, Blueprint
-from flask_restplus import Api
+from flask_restplus import Api, apidoc
+
+from werkzeug.contrib.fixers import ProxyFix
 
 # Local Imports
 from config import app_config
 
-# Blueprint Imports
-from .calc import calc as calc_blueprint
+# Namespace Imports
+from api.ipcalc.calc import api as ns_calc
 
 
 def create_app(config_name):
-    app = Flask(__name__, instance_relative_config=True)
-    
-    api = Api()
-    api.init_app(app)
+    app = Flask(__name__)
+    app.wsgi_app = ProxyFix(app.wsgi_app)
 
     app.config.from_object(app_config[config_name])
-    app.config.from_pyfile('config.py')
+    blueprint = Blueprint('api', __name__, url_prefix='/api')
 
-    # Blueprint Registers
-    app.register_blueprint(calc_blueprint, url_prefix='/api/calc')
+    api = Api(blueprint,
+        title="IP Calc API",
+        version="1.0",
+        description="API for handling IP calculations",
+        doc='/doc/')
+
+    @api.documentation
+    def swagger_ui():
+        return apidoc.ui_for(api)
+
+    app.register_blueprint(blueprint)
+
+    api.add_namespace(ns_calc, path='/calc')
 
     return app

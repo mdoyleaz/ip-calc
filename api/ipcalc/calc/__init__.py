@@ -1,11 +1,7 @@
 # api/ipcalc/calc/__init__.py
 
-from flask import Blueprint
-from flask_restplus import Api
+from flask_restplus import Namespace
 
+api = Namespace('IP Calc', description='IP Subnet Calculator')
 
-calc = Blueprint('calc', __name__)
-calc_api = Api(calc)
-
-
-from . import views
+from . import resources
