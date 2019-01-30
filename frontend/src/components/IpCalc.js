@@ -4,9 +4,8 @@ import React, {Component} from 'react';
 
 class IpCalcTable extends Component {
   state = {
-    subnet: "192.168.0.0",
-    prefix: "24",
-    split: "30",
+    subnet: "192.168.0.0/24",
+    split_prefix: 30,
     headers: [],
     content: [],
     isLoading: true,
@@ -37,13 +36,21 @@ class IpCalcTable extends Component {
   }
 
   tableData() {
-    this.setSubnet('192.168.0.0');
+    this.setSubnet('192.168.0.0/24');
 
-    let {subnet, prefix, split} = this.state;
+    let {subnet, split_prefix} = this.state;
 
-    const url = `http://127.0.0.1:5000/api/ipcalc/subnet=${subnet}&prefix=${prefix}&split=${split}`
+    const url = `http://127.0.0.1:5000/api/calc/split`
+    const httpRequest = {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({subnet: subnet, split_prefix: split_prefix})
+    }
 
-    fetch(url).then(response => response.json()).then(data => this.setState({
+    fetch(url, httpRequest).then(response => response.json()).then(data => this.setState({
       content: data.map((row, index) => {
         return (<tr>
           <th scope="row">{index + 1}</th>
@@ -86,9 +93,7 @@ class IpCalcTable extends Component {
 
 class IpCalc extends Component {
   render() {
-    return (
-      <IpCalcTable />
-    )
+    return (<IpCalcTable/>)
   }
 }
 

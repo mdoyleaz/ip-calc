@@ -2,6 +2,7 @@
 
 # Flask Imports
 from flask import Flask, Blueprint
+from flask_cors import CORS
 from flask_restplus import Api, apidoc
 
 from werkzeug.contrib.fixers import ProxyFix
@@ -10,11 +11,12 @@ from werkzeug.contrib.fixers import ProxyFix
 from config import app_config
 
 # Namespace Imports
-from api.ipcalc.calc import api as ns_calc
+from ipcalc.calc import api as ns_calc
 
 
 def create_app(config_name):
     app = Flask(__name__)
+    CORS(app)
     app.wsgi_app = ProxyFix(app.wsgi_app)
 
     app.config.from_object(app_config[config_name])

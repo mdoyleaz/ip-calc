@@ -9,7 +9,7 @@ from . import api
 from .models import calc_model, calc_split_model
 
 # Core Imports
-from api.core.ipcalc import IpCalcVerFour as ipv4calc
+from core.ipcalc import IpCalcVerFour as ipv4calc
 
 
 @api.route('/')
@@ -19,7 +19,6 @@ class SubnetDetails(Resource):
     def post(self):
         '''List subnet Details'''
 
-        print(api.payload)
         details = ipv4calc(api.payload['subnet']).__dict__()
 
         return details
