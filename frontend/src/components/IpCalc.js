@@ -35,7 +35,7 @@ class IpCalcTable extends Component {
     })
   }
 
-  tableData() {
+  splitTableData() {
     this.setSubnet('192.168.0.0/24');
 
     let {subnet, split_prefix} = this.state;
@@ -67,10 +67,14 @@ class IpCalcTable extends Component {
     })).catch(error => this.setState({error, isLoading: false}));
   }
 
+  subnetDetails() {
+
+  }
+
   componentDidMount() {
 
     this.tableHeaders();
-    this.tableData();
+    this.splitTableData();
   }
 
   render() {

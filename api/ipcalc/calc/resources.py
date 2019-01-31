@@ -33,5 +33,5 @@ class SpliteSubnet(Resource):
 
         sub = ipv4calc(api.payload['subnet'])
         split_list = sub.split_subnet(api.payload['split_prefix'])
-
+        
         return split_list

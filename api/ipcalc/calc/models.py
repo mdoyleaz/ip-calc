@@ -1,4 +1,4 @@
-# ipcalc/api/calc/resources.py
+# ipcalc/api/calc/models.py
 
 # Flask Imports
 from flask_restplus import fields

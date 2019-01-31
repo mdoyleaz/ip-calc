@@ -12,6 +12,7 @@ from config import app_config
 
 # Namespace Imports
 from ipcalc.calc import api as ns_calc
+from ipcalc.pingy import api as ns_pingy
 
 
 def create_app(config_name):
@@ -35,5 +36,6 @@ def create_app(config_name):
     app.register_blueprint(blueprint)
 
     api.add_namespace(ns_calc, path='/calc')
+    api.add_namespace(ns_pingy, path='/pingy')
 
     return app
