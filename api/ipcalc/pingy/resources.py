@@ -31,7 +31,7 @@ class Pingy(Resource):
 
 
 @api.route('/multi')
-class SpliteSubnet(Resource):
+class PingySubnet(Resource):
     @api.doc('list_multi_pingy_details')
     @api.expect(pingy_multi_model)
     def post(self):
