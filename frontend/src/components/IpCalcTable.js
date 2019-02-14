@@ -3,8 +3,9 @@ import '../css/IpCalc.css';
 import React, {Component} from 'react';
 
 class IpCalcTable extends Component {
+
   state = {
-    subnet: "192.168.0.0/24",
+    subnet: "",
     split_prefix: 30,
     headers: [],
     content: [],
@@ -36,10 +37,9 @@ class IpCalcTable extends Component {
   }
 
   splitTableData() {
-    this.setSubnet('192.168.0.0/24');
-
+    console.log(this.props)
+    this.setState({subnet: this.props.subnet})
     let {subnet, split_prefix} = this.state;
-
     const url = `http://127.0.0.1:5000/api/calc/split`
     const httpRequest = {
       method: 'POST',
@@ -49,7 +49,7 @@ class IpCalcTable extends Component {
       },
       body: JSON.stringify({subnet: subnet, split_prefix: split_prefix})
     }
-
+    console.log(httpRequest.body)
     fetch(url, httpRequest).then(response => response.json()).then(data => this.setState({
       content: data.map((row, index) => {
         return (<tr>

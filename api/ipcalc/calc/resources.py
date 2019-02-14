@@ -31,7 +31,10 @@ class SpliteSubnet(Resource):
     def post(self):
         '''List split prefix and subnet details'''
 
-        sub = ipv4calc(api.payload['subnet'])
-        split_list = sub.split_subnet(api.payload['split_prefix'])
-        
+        try:
+            sub = ipv4calc(api.payload['subnet'])
+        except ValueError:
+            return {'error': 'invalid ip address'}
+        split_list = sub.split_subnet(29)
+
         return split_list

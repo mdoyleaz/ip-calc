@@ -5,9 +5,10 @@
   "dependencies": {
     "bootstrap": "^4.2.1",
     "cors": "^2.8.5",
-    "react": "^16.7.0",
-    "react-bootstrap": "^0.32.4",
-    "react-bootstrap-dropdown-menu": "^1.1.15",
+    "install": "^0.12.2",
+    "jquery": "^3.3.1",
+    "react": "^16.8.1",
+    "react-bootstrap": "^1.0.0-beta.5",
     "react-dom": "^16.7.0",
     "react-router-dom": "^4.3.1",
     "react-scripts": "2.1.3"

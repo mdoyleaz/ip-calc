@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 
-import NavigationBarTop from './components/Navigation';
-import IpCalc from './components/IpCalc';
+import Navigation from './components/Navigation';
+import CalcContainer from './containers/CalcContainer';
 
 import './css/App.css';
 
@@ -9,8 +9,8 @@ class App extends Component {
 
   render() {
     return (<div>
-      <NavigationBarTop/>
-      <IpCalc/>
+      <Navigation />
+      <CalcContainer />
     </div>)
   };
 }
