@@ -23,6 +23,7 @@ __pycache__/
 .env.test.local
 .env.production.local
 Pipfile*
+q
 
 # Directories
 api/instance

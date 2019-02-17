@@ -1,8 +1,9 @@
 table {
-  width: 20px;
-  padding: 3% ;
+  padding: 3%;
   border: 2px solid #e7e7e7;
+  background-color: red;
 }
+
 thead {
   color: #bfc0c0;
   background-color: #343844;
@@ -11,4 +12,13 @@ thead {
 
 table-hover:hover {
   background: black;
+}
+
+.calcTable, .table-responsive {
+  border: none;
+}
+
+.subnet-form {
+  width: 50%;
+  margin-bottom: 10px;
 }

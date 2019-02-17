@@ -2,35 +2,34 @@ import '../css/IpCalc.css';
 
 import React, {Component} from "react";
 
-import IpCalcTable from "../components/IpCalcTable";
-import CalcForm from "../components/CalcForm";
+import IpCalcTable from "../components/calc/IpCalcTable";
+import CalcForm from "../components/calc/CalcForm";
 
 class IpCalc extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      subnet: '',
-      split_prefix: ''
+      pageContent: null,
+      tableContent: [],
+      tableError: null
     }
 
-    this.setSubnet = this.setSubnet.bind(this);
+    this.setTableContent = this.setTableContent.bind(this);
   }
 
-  setSubnet(subnet) {
-    this.setState({subnet: subnet});
+  setTableContent = (data) => {
+    this.setState(state => ({tableContent: data}));
   }
 
   render() {
-    if (!this.state.subnet) {
-      return (<div>
-        <CalcForm setSub={this.setSubnet} />
-      </div>)
+    if(this.state.tableContent.length === 0){
+      return <CalcForm setSplit={this.setTableContent} />
     } else {
-          console.log(this.state.subnet)
-
       return (<div>
-        <CalcForm setSub={this.setSubnet} />
-        <IpCalcTable subnet={this.state.subnet} />
+        <CalcForm setSplit={this.setTableContent} />
+        <div className="calcTable">
+        <IpCalcTable data={this.state.tableContent} />
+        </div>
       </div>)
     }
   }
