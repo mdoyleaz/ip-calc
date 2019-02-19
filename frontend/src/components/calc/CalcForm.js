@@ -24,7 +24,7 @@ class CalcForm extends Component {
       body: JSON.stringify({ subnet: this.state.subnet, split_prefix: 30 })
     }
 
-    const url = `http://127.0.0.1:5000/api/calc/split`
+    const url = `http://0.0.0.0:5000/api/calc/split`
 
     fetch(url, httpRequest).then(
       response => response.json()).then(
@@ -34,7 +34,7 @@ class CalcForm extends Component {
   render() {
     return (<div className="App">
       <Form.Group>
-        <Form.Label>Subnet</Form.Label>
+        <Form.Label>Subnet (ex. 192.168.0.0/24)</Form.Label>
         <Form.Control className='subnet-form' onChange={this.handleChange} placeholder="Enter Subnet" />
         <Button type="submit" onClick={this.handleSubmit}>
           Calculate It</Button>
