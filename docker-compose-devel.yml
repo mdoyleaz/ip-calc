@@ -2,33 +2,31 @@ version: "3"
 
 services:
   api:
-    container_name: api
-    # restart: always
+    container_name: api-dev
     build:
       context: ./api
       dockerfile: 'Dockerfile'
     environment:
       - FLASK_APP=run.py
-      - FLASK_CONFIG=production
+      - FLASK_CONFIG=development
     volumes:
       - ./api:/ipcalc/api:z
     ports:
       - 5000:5000
-    command: bash -c 'gunicorn -b :5000 wsgi';
+    command: python run.py
 
   frontend:
-    container_name: frontend
-    # restart: always
+    container_name: frontend-dev
     build:
       context: ./frontend
-      dockerfile: 'Dockerfile'
+      dockerfile: 'Dockerfile-dev'
     volumes:
       - ./frontend:/ipcalc/frontend
     depends_on:
       - api
     ports:
-      - 80:80
-    command: nginx -g 'daemon off';
+      - 3000:3000
+    command: npm start
 
 
   # nginx-rev-prox:
