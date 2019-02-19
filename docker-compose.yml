@@ -1,16 +1,6 @@
 version: "3"
 
 services:
-  nginx:
-    container_name: nginx
-    build:
-      context: .
-      dockerfile: ./nginx/Dockerfile
-    image: nginx
-    restart: always
-    ports:
-      - 80:80
-    command: nginx -g 'daemon off';
   api:
     container_name: api
     build:
@@ -20,8 +10,20 @@ services:
       - FLASK_APP=run.py
       - FLASK_CONFIG=development
     hostname: api
-    ports:
-       - 5000:5000
     volumes:
       - ./api:/ipcalc/api
     command: bash -c 'gunicorn -b :5000 wsgi';
+
+  nginx:
+    container_name: nginx
+    build:
+      context: .
+      dockerfile: ./nginx/Dockerfile
+    image: nginx
+    restart: always
+    depends_on:
+      - api
+    ports:
+      - 80:80
+      - 5000:5001
+    command: nginx -g 'daemon off';

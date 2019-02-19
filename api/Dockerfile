@@ -8,3 +8,5 @@ RUN pip install -r requirements.txt
 RUN pip install gunicorn
 
 ADD . /ipcalc/api
+
+EXPOSE 5000
