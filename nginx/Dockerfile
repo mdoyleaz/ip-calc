@@ -1,5 +1,3 @@
 FROM nginx
 
-ADD ./nginx/nginx.conf /etc/nginx/nginx.conf
-
-CMD ['nginx', '-g','daemon off']
+ADD ./nginx.conf /etc/nginx/nginx.conf

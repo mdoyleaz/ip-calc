@@ -19,7 +19,7 @@ services:
     container_name: frontend-dev
     build:
       context: ./frontend
-      dockerfile: 'Dockerfile-dev'
+      dockerfile: 'Dockerfile.dev'
     volumes:
       - ./frontend:/ipcalc/frontend
     depends_on:
@@ -27,16 +27,3 @@ services:
     ports:
       - 3000:3000
     command: npm start
-
-
-  # nginx-rev-prox:
-  #   container_name: nginx
-  #   # restart: always
-  #   build:
-  #     context: ./nginx
-  #     dockerfile: 'Dockerfile.${SERVER_CONFIG}'
-  #   depends_on:
-  #     - api
-  #   ports:
-  #     - 80:80
-  #     - 5000:5000

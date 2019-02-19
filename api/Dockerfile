@@ -7,7 +7,4 @@ COPY requirements.txt /ipcalc/api/
 RUN pip install -r requirements.txt
 RUN pip install gunicorn
 
-ADD . /ipcalc/api
-
-EXPOSE 5000
 CMD gunicorn -b :5000 wsgi

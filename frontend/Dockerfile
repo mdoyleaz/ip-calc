@@ -1,4 +1,4 @@
-# Node/React
+# Node/React Production Container
 FROM node:latest as frontend
 
 WORKDIR /ipcalc/frontend/

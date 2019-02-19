@@ -7,5 +7,3 @@ COPY requirements.txt /ipcalc/api/
 RUN pip install -r requirements.txt
 
 ADD . /ipcalc/api
-
-EXPOSE 5000
