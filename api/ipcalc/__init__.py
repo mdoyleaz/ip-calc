@@ -18,7 +18,7 @@ from ipcalc.pingy import api as ns_pingy
 def create_app(config_name):
     app = Flask(__name__)
     CORS(app)
-    app.wsgi_app = ProxyFix(app.wsgi_app)
+    app.wsgi_app = app.wsgi_app
 
     app.config.from_object(app_config[config_name])
     blueprint = Blueprint('api', __name__, url_prefix='/api')

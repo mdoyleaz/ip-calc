@@ -24,7 +24,7 @@ class CalcForm extends Component {
       body: JSON.stringify({ subnet: this.state.subnet, split_prefix: 30 })
     }
 
-    const url = `http://0.0.0.0:5000/api/calc/split`
+    const url = `/api/calc/split`
 
     fetch(url, httpRequest).then(
       response => response.json()).then(

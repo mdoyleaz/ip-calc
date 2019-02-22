@@ -2,7 +2,7 @@ version: "3"
 
 services:
   api:
-    container_name: api-dev
+    container_name: api
     build:
       context: ./api
       dockerfile: 'Dockerfile'
@@ -16,7 +16,7 @@ services:
     command: python run.py
 
   frontend:
-    container_name: frontend-dev
+    container_name: frontend
     build:
       context: ./frontend
       dockerfile: 'Dockerfile.dev'
@@ -27,3 +27,20 @@ services:
     ports:
       - 3000:3000
     command: npm start
+
+  nginx-rev-proxy:
+    container_name: nginx-rev-proxy
+    # restart: always
+    build:
+      context: ./nginx
+      dockerfile: 'Dockerfile'
+    depends_on:
+      - api
+      - frontend
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf
+      - ./nginx/sites-available:/etc/nginx/sites-available
+    ports:
+      - 80:80
+      - 443:443
+    command: nginx -g 'daemon off';
